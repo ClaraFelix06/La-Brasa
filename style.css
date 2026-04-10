@@ -1,0 +1,65 @@
+.main-header {
+  background-color: #000; 
+  background-image: linear-gradient(to bottom, #000000e6 0%, #00000099 100%), url('fire-background.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.logo img {
+  max-height: 80px; 
+  margin-right: 15px;
+}
+
+.logo h1 {
+  font-family: 'Bebas Neue', sans-serif; 
+  font-size: 2.5em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.text-la {
+  color: white;
+}
+
+.text-brasa {
+  color: #e7410f; 
+}
+
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 40px; 
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #ffffffcc; 
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  text-transform: capitalize; 
+  transition: color 0.3s;
+  padding-bottom: 5px; 
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: white;
+  border-bottom: 3px solid #e7410f; /* Linha laranja para o link ativo/hover */
+}
