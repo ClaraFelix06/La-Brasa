@@ -1,0 +1,46 @@
+header {
+    text-align: center; /* Centralize the logo */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centralize the navigation links */
+    gap: 20px; /* Add some spacing between the links */
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ff5722; /* Add a hover effect */
+}
+
+.inicio {
+    text-align: center;
+}
+
+.inicio h1 {
+    font-size: 3em;
+}
+
+.qualidades ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.qualidades img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
