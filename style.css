@@ -1,3 +1,10 @@
+:root {
+    --cor-primaria:#FF4400;
+    --cor-sencudaria:#000000;
+    --cor-fundo:#291003 ;
+    --cor-texto:#FFFFFF;
+}
+
 header {
     text-align: center; /* Centralize the logo */
 }
@@ -44,3 +51,45 @@ nav a:hover {
     height: 50px;
     object-fit: contain;
 }
+body{
+    background-color: var(--cor-fundo);
+}
+.localizacao{
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: var(--cor-texto);
+}
+.destaque-localizacao{
+    color: var(--cor-primaria);
+}
+.mapa{
+    display: flex;
+    justify-content: center;
+}
+.container-mapa{
+    width: 70%;
+    height: 500px;
+    border-radius: 5px;
+}
+.botao{
+    padding: 55px;
+    display: flex;
+    justify-content: center;
+}
+.cor-botao{
+    background-color: var(--cor-primaria);
+    border-radius: 20px;
+    border: #FF4400;
+    
+}
+.letra-botao{
+    color: var(--cor-texto);
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
