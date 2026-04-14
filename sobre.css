@@ -1,71 +1,9 @@
-/* Configurações Gerais */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* Estilos Específicos da Página Sobre */
 
 body {
-    /* Cor de fundo conforme o modelo: preto profundo com um toque de marrom brasa */
     background: #291003;
     color: white;
     min-height: 100vh;
-}
-
-
-.main-header {
-    padding: 40px 20px;
-    text-align: center;
-    background-color: #050200;
-}
-
-.logo-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1px;
-    margin-bottom: 20px;
-}
-
-.logo-img {
-    height: 60px; 
-}
-
-h1 {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.text-brasa {
-    color: #FF4500; 
-}
-
-
-.main-nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    gap: 40px;
-}
-
-.main-nav a {
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    font-size: 1.1rem;
-    padding-bottom: 8px;
-    transition: 0.3s;
-}
-
-.main-nav a.active {
-    border-bottom: 3px solid #FF4500; 
-}
-
-.main-nav a:hover {
-    color: #FF4500;
 }
 
 
@@ -77,15 +15,16 @@ h1 {
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap; /*  o botão vá para a linha de baixo */
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     gap: 50px;
 }
 
 
-.content-left, .content-right {
-    flex: 1 1 450px; /* Ocupa o espaço disponível, mas 'quebra' se ficar menor que 450px */
+.content-left,
+.content-right {
+    flex: 1 1 450px;
 }
 
 
@@ -93,7 +32,9 @@ h1 {
 .hero-pizza {
     width: 100%;
     max-width: 500px;
-    filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.3)); /* Brilho leve de brasa na foto */
+    border-radius: 15px;
+    border: 3px solid rgba(255, 68, 0, 0.3);
+    filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.3));
 }
 
 .content-right h1 {
@@ -133,7 +74,7 @@ h1 {
         text-align: center;
     }
 
-    .main-nav ul {
+    nav ul {
         gap: 15px;
         flex-wrap: wrap;
     }
