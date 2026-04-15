@@ -77,11 +77,14 @@ body{
     padding: 55px;
     display: flex;
     justify-content: center;
+    text-decoration: none;
+    
 }
 .cor-botao{
     background-color: var(--cor-primaria);
     border-radius: 20px;
     border: #FF4400;
+    
     
 }
 .letra-botao{
