@@ -77,6 +77,7 @@ const btnsPedir = document.querySelectorAll('.bt-pedir');
 
 let totalGeral = 0;
 let quantidadeItens = 0;
+const itensCarrinho = {};
 
 // 1. O menu de finalizar pedido SÓ abre ao clicar no ícone do carrinho
 if (openBtn) {
@@ -100,25 +101,70 @@ btnsPedir.forEach(botao => {
         if (!nome || isNaN(preco)) return;
 
         // Criar item visual
-        const li = document.createElement('li');
-        li.classList.add('cart-item');
-        li.innerHTML = `
-            <div class="item-info">
-                <p>${nome}</p>
-                <span>R$ ${preco.toFixed(2).replace('.', ',')}</span>
-            </div>
-            <button class="remove-item">X</button>
-        `;
+        if (itensCarrinho[nome]) {
+            itensCarrinho[nome].quantidade++;
+        } else {
+            const li = document.createElement('li');
+            li.classList.add('cart-item');
+            li.innerHTML = `
+                <div class="item-info">
+                    <p>${nome}</p>
+                    <span class="item-price">R$ ${preco.toFixed(2).replace('.', ',')}</span>
+                </div>
+                <div class="quantity-controls">
+                    <button class="quantity-btn decrease-item">-</button>
+                    <span class="item-quantity">1</span>
+                    <button class="quantity-btn increase-item">+</button>
+                </div>
+                <button class="remove-item">X</button>
+            `;
+
+            itensCarrinho[nome] = {
+                preco,
+                quantidade: 1,
+                elemento: li
+            };
+
+            li.querySelector('.decrease-item').addEventListener('click', () => {
+                const item = itensCarrinho[nome];
+
+                if (item.quantidade > 1) {
+                    item.quantidade--;
+                    totalGeral -= item.preco;
+                    quantidadeItens--;
+                    atualizarInterface();
+                    return;
+                }
+
+                li.remove();
+                totalGeral -= item.preco;
+                quantidadeItens--;
+                delete itensCarrinho[nome];
+                atualizarInterface();
+            });
+
+            li.querySelector('.increase-item').addEventListener('click', () => {
+                const item = itensCarrinho[nome];
+
+                item.quantidade++;
+                totalGeral += item.preco;
+                quantidadeItens++;
+                atualizarInterface();
+            });
 
         // Lógica de remover
-        li.querySelector('.remove-item').addEventListener('click', () => {
-            li.remove();
-            totalGeral -= preco;
-            quantidadeItens--; // Diminui o contador
-            atualizarInterface();
-        });
+            li.querySelector('.remove-item').addEventListener('click', () => {
+                const item = itensCarrinho[nome];
 
-        cartList.appendChild(li);
+                li.remove();
+                totalGeral -= item.preco * item.quantidade;
+                quantidadeItens -= item.quantidade; // Diminui o contador
+                delete itensCarrinho[nome];
+                atualizarInterface();
+            });
+
+            cartList.appendChild(li);
+        }
         totalGeral += preco;
         quantidadeItens++; // Aumenta o contador
         atualizarInterface();
@@ -136,4 +182,12 @@ function atualizarInterface() {
     
     // Atualiza o número (0 para 1, etc) no ícone do cabeçalho
     cartCountElement.innerText = quantidadeItens;
+
+    Object.values(itensCarrinho).forEach(item => {
+        const quantidade = item.elemento.querySelector('.item-quantity');
+        const preco = item.elemento.querySelector('.item-price');
+
+        quantidade.innerText = item.quantidade;
+        preco.innerText = `R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}`;
+    });
 }
