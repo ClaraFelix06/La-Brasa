@@ -34,13 +34,11 @@ if (slide) {
 function loadHeader() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
-        // Pede o arquivo "header.html" que você isolou
         fetch('header.html')
             .then(response => response.text())
             .then(data => {
                 headerPlaceholder.innerHTML = data;
 
-                // Efeito Brilhante do Menu: Descobrir onde estamos!
                 let currentPage = window.location.pathname.split('/').pop();
                 if(currentPage === '' || currentPage === '/') {
                     currentPage = 'home.html';
@@ -50,7 +48,6 @@ function loadHeader() {
                 navLinks.forEach(link => {
                     const linkDestino = link.getAttribute('href');
                     if (linkDestino === currentPage) {
-                        // Deixa a aba Laranja caso seja a página ativa
                         link.style.color = '#FF4400';
                         link.style.borderBottom = '3px solid #FF4400';
                         link.style.paddingBottom = '5px';
@@ -61,25 +58,24 @@ function loadHeader() {
     }
 }
 
-// Quando o navegador desenhar a página, jogue o menu e o javascript!
 document.addEventListener('DOMContentLoaded', loadHeader);
 
 
-// Fazendo ligação do carrinho com os pedidos 
+// ---- CARRINHO DO CARDÁPIO ----
 
 const cartSidebar = document.getElementById('cart-sidebar');
 const openBtn = document.querySelector('.cart-open-btn');
 const closeBtn = document.getElementById('close-cart');
 const cartList = document.querySelector('.cart-items');
 const cartTotalValue = document.getElementById('cart-total-value');
-const cartCountElement = document.getElementById('cart-count'); // O número no ícone
+const cartCountElement = document.getElementById('cart-count');
 const btnsPedir = document.querySelectorAll('.bt-pedir');
 
 let totalGeral = 0;
 let quantidadeItens = 0;
 const itensCarrinho = {};
 
-// 1. O menu de finalizar pedido SÓ abre ao clicar no ícone do carrinho
+// Abrir/fechar sidebar
 if (openBtn) {
     openBtn.addEventListener('click', () => {
         cartSidebar.classList.add('open');
@@ -92,7 +88,7 @@ if (closeBtn) {
     });
 }
 
-// 2. Adicionar itens ao carrinho 
+// Adicionar itens ao carrinho
 btnsPedir.forEach(botao => {
     botao.addEventListener('click', () => {
         const nome = botao.getAttribute('data-nome');
@@ -100,7 +96,6 @@ btnsPedir.forEach(botao => {
 
         if (!nome || isNaN(preco)) return;
 
-        // Criar item visual
         if (itensCarrinho[nome]) {
             itensCarrinho[nome].quantidade++;
         } else {
@@ -119,15 +114,10 @@ btnsPedir.forEach(botao => {
                 <button class="remove-item">X</button>
             `;
 
-            itensCarrinho[nome] = {
-                preco,
-                quantidade: 1,
-                elemento: li
-            };
+            itensCarrinho[nome] = { preco, quantidade: 1, elemento: li };
 
             li.querySelector('.decrease-item').addEventListener('click', () => {
                 const item = itensCarrinho[nome];
-
                 if (item.quantidade > 1) {
                     item.quantidade--;
                     totalGeral -= item.preco;
@@ -135,7 +125,6 @@ btnsPedir.forEach(botao => {
                     atualizarInterface();
                     return;
                 }
-
                 li.remove();
                 totalGeral -= item.preco;
                 quantidadeItens--;
@@ -145,48 +134,61 @@ btnsPedir.forEach(botao => {
 
             li.querySelector('.increase-item').addEventListener('click', () => {
                 const item = itensCarrinho[nome];
-
                 item.quantidade++;
                 totalGeral += item.preco;
                 quantidadeItens++;
                 atualizarInterface();
             });
 
-        // Lógica de remover
             li.querySelector('.remove-item').addEventListener('click', () => {
                 const item = itensCarrinho[nome];
-
                 li.remove();
                 totalGeral -= item.preco * item.quantidade;
-                quantidadeItens -= item.quantidade; // Diminui o contador
+                quantidadeItens -= item.quantidade;
                 delete itensCarrinho[nome];
                 atualizarInterface();
             });
 
             cartList.appendChild(li);
         }
+
         totalGeral += preco;
-        quantidadeItens++; // Aumenta o contador
+        quantidadeItens++;
         atualizarInterface();
-        
-        
     });
 });
+
+// ---- FINALIZAR PEDIDO: salva no localStorage e vai para delivery.html ----
+const checkoutBtn = document.querySelector('.checkout-btn');
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+        if (Object.keys(itensCarrinho).length === 0) return;
+
+        // Monta array com nome, preco e quantidade de cada item
+        const pedido = Object.entries(itensCarrinho).map(([nome, item]) => ({
+            nome,
+            preco: item.preco,
+            qtd: item.quantidade
+        }));
+
+        // Salva no localStorage para a delivery.html ler
+        localStorage.setItem('labrasa_pedido', JSON.stringify(pedido));
+
+        // Redireciona para a página de delivery
+        window.location.href = 'delivery.html';
+    });
+}
 
 function atualizarInterface() {
     if (totalGeral < 0) totalGeral = 0;
     if (quantidadeItens < 0) quantidadeItens = 0;
 
-    // Atualiza o valor total no menu lateral
     cartTotalValue.innerText = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
-    
-    // Atualiza o número (0 para 1, etc) no ícone do cabeçalho
     cartCountElement.innerText = quantidadeItens;
 
     Object.values(itensCarrinho).forEach(item => {
         const quantidade = item.elemento.querySelector('.item-quantity');
         const preco = item.elemento.querySelector('.item-price');
-
         quantidade.innerText = item.quantidade;
         preco.innerText = `R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}`;
     });
