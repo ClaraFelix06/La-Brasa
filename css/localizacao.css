@@ -1,0 +1,155 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('../fonte-bebasneue/BebasNeue-Regular.woff2') format('woff2'),
+        url('../fonte-bebasneue/BebasNeue-Regular.woff') format('woff'),
+        url('../fonte-bebasneue/BebasNeue-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mollen';
+    src: url('../fonte-mollen/Mollen-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mollen';
+    src: url('../fonte-mollen/Mollen-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+body{
+  font-family: 'Mollen', sans-serif;
+    background-color: #291003;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 40px;
+    background-color: #000000;
+    margin-bottom: 100px;
+}
+
+main {
+    padding-top: 170px;
+}
+
+h1{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 50px;
+}
+nav {
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav li {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    
+}
+nav a:hover {
+    color: #771c00;
+    
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+}
+.logo h2 {
+    margin: 0 0 0 -20px;
+    font-size: 2.5em;
+    /* A fonte Bebas Neue é alta mas fininha, por isso aumenta-se o valor */
+    font-family: 'Bebas Neue', sans-serif;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.destaque-localizacao,.destaque{
+   color: #FF4400;
+}
+
+
+.mapa{
+    display: flex;
+    justify-content: center;
+}
+.container-mapa{
+    max-width: 100%;
+    width: 60%;
+    margin-top: 50px;
+    border-radius: 5px;
+}
+.container-botao {
+    display: flex;
+    justify-content: center;
+}
+.botao-mapa {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 15px 25px;
+    background-color: #FF4400;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    font-family: 'Mollen', sans-serif;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.botao-mapa:hover {
+    background-color: #b42a00;
+}
+footer{
+    text-align: center;
+    color: #ffffff;
+    margin-top: 80px;
+    margin-bottom: 0;
+    background-color: #000000;
+    padding: 40px 40px;
+}
+

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Brasa - Delivery</title>
+    <link rel="icon" href="imagens/favicon-la-brasa.png" type="image/png">
+    <link rel="stylesheet" href="css/delivery.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="imagens/Gemini_Generated_Image_ynnosaynnosaynno-removebg-preview.png" alt="La Brasa Logo">
+            <h2>La <span class="destaque">Brasa</span></h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="delivery.html" class="nav-ativo">Delivery</a></li>
+                <li><a href="localizacao.html">Localização</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="delivery-main">
+
+        <!-- COLUNA ESQUERDA: sugestão de bebidas -->
+        <section class="coluna-esquerda">
+            <div class="upsell-box">
+                <p>Opa! Antes de prosseguir, que tal uma<br>bebida para acompanhar?</p>
+            </div>
+
+            <div class="bebida-card">
+                <img src="imagens/cocacola.png" alt="Refrigerante - Cola" class="bebida-img">
+                <div class="bebida-info">
+                    <h4>Refrigerante - Coca Cola</h4>
+                    <span>400ml</span>
+                </div>
+                <button class="btn-incluir" data-nome="Refrigerante - Coca Cola" data-preco="7.00">Incluir</button>
+            </div>
+
+            <div class="bebida-card">
+                <img src="imagens/refri-laranja.png" alt="Refrigerante - Laranja" class="bebida-img">
+                <div class="bebida-info">
+                    <h4>Refrigerante - Fanta Laranja</h4>
+                    <span>400ml</span>
+                </div>
+                <button class="btn-incluir" data-nome="Refrigerante - Fanta Laranja" data-preco="6.00">Incluir</button>
+            </div>
+        </section>
+
+        <!-- COLUNA DIREITA: carrinho + formulário -->
+        <aside class="coluna-direita">
+
+            <!-- Carrinho -->
+            <div class="painel">
+                <h2 class="painel-titulo">Carrinho</h2>
+                <ul class="carrinho-lista" id="carrinho-lista">
+                    <li class="carrinho-vazio" id="carrinho-vazio">Seu carrinho está vazio.</li>
+                </ul>
+                <div class="carrinho-linha-total">
+                    <span>Total</span>
+                    <span class="total-valor" id="total-valor">R$ 0,00</span>
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <div class="painel">
+                <h2 class="painel-titulo">Finalizar</h2>
+
+                <div class="campo">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" placeholder="Digite aqui">
+                </div>
+
+                <div class="campo">
+                    <label for="whatsapp">Whatsapp</label>
+                    <input type="tel" id="whatsapp" placeholder="Digite aqui" maxlength="15">
+                </div>
+
+                <div class="campo">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" id="endereco" placeholder="Digite aqui">
+                </div>
+
+                <div class="campo">
+                    <label for="pagamento">Pagamento</label>
+                    <div class="select-wrapper">
+                        <select id="pagamento">
+                            <option value="" disabled selected>Escolha seu metodo</option>
+                            <option value="pix">PIX</option>
+                            <option value="credito">Cartão de Crédito</option>
+                            <option value="debito">Cartão de Débito</option>
+                            <option value="dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="campo" id="campo-troco" style="display:none;">
+                    <label for="troco">Troco para</label>
+                    <input type="number" id="troco" placeholder="Ex: 100,00">
+                </div>
+
+                <button class="btn-finalizar" id="btn-finalizar">Finalizar Pedido 🛵</button>
+            </div>
+
+        </aside>
+    </main>
+
+    <!-- Modal de confirmação -->
+    <div class="modal-overlay" id="modal" style="display:none;">
+        <div class="modal-box">
+            <div class="modal-icone">✅</div>
+            <h2>Pedido Enviado!</h2>
+            <p id="modal-texto"></p>
+            <button class="btn-modal-ok" id="btn-modal-ok">Fazer novo pedido</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <footer>
+        <p>La Brasa - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="delivery.js"></script>
+
+</body>
+</html>
