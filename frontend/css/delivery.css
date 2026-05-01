@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'Bebas Neue';
     src: url('../fonte-bebasneue/BebasNeue-Regular.woff2') format('woff2'),
-         url('../fonte-bebasneue/BebasNeue-Regular.woff') format('woff'),
-         url('../fonte-bebasneue/BebasNeue-Regular.ttf') format('truetype');
+        url('../fonte-bebasneue/BebasNeue-Regular.woff') format('woff'),
+        url('../fonte-bebasneue/BebasNeue-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -45,8 +45,10 @@ header {
     gap: 20px;
     padding: 20px 40px;
     background-color: #000000;
-    position: sticky;
+    position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 100;
 }
 
@@ -104,7 +106,7 @@ nav a.nav-ativo {
     gap: 24px;
     max-width: 960px;
     width: 100%;
-    margin: 48px auto 60px auto;
+    margin: 180px auto 60px auto;
     padding: 0 20px;
     align-items: flex-start;
     flex: 1;
@@ -128,7 +130,7 @@ nav a.nav-ativo {
 }
 
 .bebida-card {
-    background-color: #111111;
+    background-color: #000000;
     border-radius: 18px;
     display: flex;
     align-items: center;
@@ -148,7 +150,7 @@ nav a.nav-ativo {
     height: 64px;
     object-fit: contain;
     flex-shrink: 0;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
 .bebida-info {
@@ -198,7 +200,7 @@ nav a.nav-ativo {
 }
 
 .painel {
-    background-color: #111111;
+    background-color: #000000;
     border-radius: 18px;
     padding: 22px 22px;
 }
@@ -423,8 +425,15 @@ nav a.nav-ativo {
 }
 
 @keyframes popIn {
-    from { opacity: 0; transform: scale(0.82); }
-    to   { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.82);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .modal-icone {
@@ -477,7 +486,7 @@ nav a.nav-ativo {
     font-size: 0.88em;
     font-weight: bold;
     z-index: 9999;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
     white-space: nowrap;
@@ -501,6 +510,7 @@ footer {
     .delivery-main {
         flex-direction: column;
     }
+
     .coluna-direita {
         width: 100%;
         position: static;
@@ -508,7 +518,17 @@ footer {
 }
 
 @media (max-width: 480px) {
-    header { padding: 16px 20px; }
-    nav ul { gap: 12px; flex-wrap: wrap; }
-    .delivery-main { padding: 0 12px; margin-top: 28px; }
+    header {
+        padding: 16px 20px;
+    }
+
+    nav ul {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .delivery-main {
+        padding: 0 12px;
+        margin-top: 150px;
+    }
 }

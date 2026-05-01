@@ -27,15 +27,14 @@
 }
 
 .card {
-    background-color: rgba(0, 0, 0, 0.78);
+    background-color: rgb(0, 0, 0);
     max-width: 960px;
     width: calc(100% - 40px);
     margin: auto;
     border-radius: 28px;
     text-align: left;
     padding: 32px 30px 40px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-    border: 1px solid rgba(255, 68, 0, 0.18);
+    border: 1px solid rgb(0, 0, 0);
     max-height: calc(100vh - 240px);
     overflow: hidden;
 }
@@ -60,7 +59,7 @@
 }
 
 .title-cardapio {
-    color: #fff;
+    color: #ff4400;
     font-size: 2.6rem;
     letter-spacing: 1px;
     margin: 0;
@@ -70,13 +69,13 @@
 .card hr {
     border: 0;
     height: 1px;
-    background: rgba(255, 68, 0, 0.2);
+    background: rgb(255, 85, 23);
     margin: 18px auto 28px;
     width: 80%;
 }
 
 .sub-cardapio {
-    color: #ff4400;
+    color: #ffffff;
     margin: 40px 0 18px;
     font-size: 2rem;
     text-transform: uppercase;
@@ -103,7 +102,7 @@ p {
     padding: 18px;
     gap: 18px;
     margin-bottom: 16px;
-    border: 1px solid rgba(255, 68, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .info-produto {
@@ -132,7 +131,7 @@ p {
 }
 
 header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -146,6 +145,7 @@ header {
     background-color: #000000;
     margin-bottom: 100px;
 }
+
 .logo {
     display: flex;
     align-items: center;
@@ -156,6 +156,7 @@ header {
     height: 60px;
     width: auto;
 }
+
 .logo h2 {
     margin: 0 0 0 -20px;
     font-size: 2.5em;
@@ -237,8 +238,15 @@ body {
     text-transform: none;
     padding: 10px 20px;
     border-radius: 30px;
-    transition: background-color 0.3s ease;
+    border: none;
+    outline: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     cursor: pointer;
+}
+
+.bt-pedir:hover {
+    background-color: #e63d00;
+    transform: scale(1.05);
 }
 
 
@@ -256,12 +264,14 @@ footer {
 .cart-sidebar {
     position: fixed;
     top: 0;
-    right: -400px; 
+    right: -400px;
     width: 350px;
     height: 100vh;
-    background-color: #000; /* Fundo preto para combinar com o seu layout */
+    background-color: #000;
+    /* Fundo preto para combinar com o seu layout */
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-    transition: right 0.3s ease; /* Faz o efeito de deslizar */
+    transition: right 0.3s ease;
+    /* Faz o efeito de deslizar */
     z-index: 2000;
     display: flex;
     flex-direction: column;
@@ -303,8 +313,10 @@ footer {
 
 /* Lista de Itens */
 .cart-items {
-    flex-grow: 1; /* Faz a lista ocupar o espaço central */
-    overflow-y: auto; /* Adiciona scroll se tiver muitas pizzas */
+    flex-grow: 1;
+    /* Faz a lista ocupar o espaço central */
+    overflow-y: auto;
+    /* Adiciona scroll se tiver muitas pizzas */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -414,42 +426,49 @@ footer {
     text-transform: uppercase;
 }
 
-/* 1. Alinhamento no Menu */
+/* 1. Alinhamento no Menu (Nao afeta o layout do float mas mantem ele fora do fluxo) */
 .cart-item-nav {
     display: flex;
     align-items: center;
 }
 
-
+/* 2. Botao Flutuante */
 .cart-open-btn {
-    background: transparent;
-    border: 1px solid #ff4400; /* Borda laranja fina */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #ff4400;
     color: #ffffff;
-    padding: 8px 18px;
+    padding: 12px 24px;
     border-radius: 30px;
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     font-family: 'Mollen', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    line-height: 1;
-    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1001;
 }
 
 .cart-open-btn:hover {
-    background-color: #ff4400;
-    color: #000;
+    background-color: #e63d00;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    color: #fff;
 }
 
 /* 3. O Contador  */
 #cart-count {
-    background-color: #ff4400;
+    background-color: #000;
     color: #fff;
     padding: 2px 8px;
-    border-radius: 2px;
+    border-radius: 12px;
     font-size: 0.9rem;
     font-weight: bold;
+    border: 1px solid #ff4400;
 }

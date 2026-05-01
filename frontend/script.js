@@ -13,7 +13,7 @@ if (slide) {
 
     nextBtn.addEventListener('click', () => {
         if (counter >= images.length - 1) {
-            counter = 0; 
+            counter = 0;
         } else {
             counter++;
         }
@@ -22,7 +22,7 @@ if (slide) {
 
     prevBtn.addEventListener('click', () => {
         if (counter <= 0) {
-            counter = images.length - 1; 
+            counter = images.length - 1;
         } else {
             counter--;
         }
@@ -40,7 +40,7 @@ function loadHeader() {
                 headerPlaceholder.innerHTML = data;
 
                 let currentPage = window.location.pathname.split('/').pop();
-                if(currentPage === '' || currentPage === '/') {
+                if (currentPage === '' || currentPage === '/') {
                     currentPage = 'home.html';
                 }
 
@@ -53,6 +53,13 @@ function loadHeader() {
                         link.style.paddingBottom = '5px';
                     }
                 });
+
+                // O botão de carrinho agora é flutuante e está direto no cardapio.html
+
+                // Atualizar os números caso algo já esteja carregado
+                if (typeof atualizarInterface === 'function') {
+                    atualizarInterface();
+                }
             })
             .catch(error => console.error("Erro ao carregar o header:", error));
     }
@@ -64,11 +71,9 @@ document.addEventListener('DOMContentLoaded', loadHeader);
 // ---- CARRINHO DO CARDÁPIO ----
 
 const cartSidebar = document.getElementById('cart-sidebar');
-const openBtn = document.querySelector('.cart-open-btn');
 const closeBtn = document.getElementById('close-cart');
 const cartList = document.querySelector('.cart-items');
 const cartTotalValue = document.getElementById('cart-total-value');
-const cartCountElement = document.getElementById('cart-count');
 const btnsPedir = document.querySelectorAll('.bt-pedir');
 
 let totalGeral = 0;
@@ -76,9 +81,10 @@ let quantidadeItens = 0;
 const itensCarrinho = {};
 
 // Abrir/fechar sidebar
-if (openBtn) {
-    openBtn.addEventListener('click', () => {
-        cartSidebar.classList.add('open');
+const floatingCartBtn = document.getElementById('floating-cart-btn');
+if (floatingCartBtn) {
+    floatingCartBtn.addEventListener('click', () => {
+        if (cartSidebar) cartSidebar.classList.add('open');
     });
 }
 
@@ -155,6 +161,11 @@ btnsPedir.forEach(botao => {
         totalGeral += preco;
         quantidadeItens++;
         atualizarInterface();
+        
+        // Abre o carrinho automaticamente
+        if (cartSidebar) {
+            cartSidebar.classList.add('open');
+        }
     });
 });
 
@@ -183,8 +194,9 @@ function atualizarInterface() {
     if (totalGeral < 0) totalGeral = 0;
     if (quantidadeItens < 0) quantidadeItens = 0;
 
-    cartTotalValue.innerText = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
-    cartCountElement.innerText = quantidadeItens;
+    if (cartTotalValue) cartTotalValue.innerText = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
+    const cartCountElem = document.getElementById('cart-count');
+    if (cartCountElem) cartCountElem.innerText = quantidadeItens;
 
     Object.values(itensCarrinho).forEach(item => {
         const quantidade = item.elemento.querySelector('.item-quantity');
